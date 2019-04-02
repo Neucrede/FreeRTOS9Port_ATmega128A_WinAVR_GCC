@@ -72,6 +72,11 @@
 
 #include <avr/io.h>
 
+#ifndef _AVR_IOM128_H_
+    #error Oops! This file is not intended for use with MCUs other than ATmega128.
+    #error Please check your project configuration file.
+#endif /* _AVR_IOM128_H_ */
+
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -98,6 +103,13 @@
     #warning F_CPU not defined, use 16MHz as default.
     #define configCPU_CLOCK_HZ      ( ( unsigned long ) 16000000 )
 #endif /* F_CPU */
+
+/*
+ * If configUSE_TIMER0_FOR_TICKING is set to 1, TIMER0 will be used to generate
+ * a tick interrupt, otherwise TIMER1 will be used if configUSE_TIMER0_FOR_TICKING
+ * is set to 0 or other values or not defined.
+ */
+#define configUSE_TIMER0_FOR_TICKING    1
 
 #define configTICK_RATE_HZ          ( ( TickType_t ) 1000 )
 #define configMAX_PRIORITIES        ( 4 )
